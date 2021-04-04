@@ -1,10 +1,10 @@
 " Vim Color File
 "
 " Name:        mirodark
-" Version:     0.5
-" Last Change: 06-02-2016
-" Maintainer:  Jerome Castaneda <djjcast@gmail.com>
-" URL:         https://github.com/djjcast/mirodark
+" Version:     0.1
+" Last Change: 04-03-21
+" Maintainer:  D Smith <smithwebdd@gmail.com>
+" URL:         https://github.com/smithwebdev/mirodark
 "
 " About:       mirodark extends Jason W Ryan's miromiro(1) Vim color file with gVim, Linux console,
 "              xterm-88color, and xterm-256color support. mirodark uses Jason W Ryan's dark(2)
@@ -15,7 +15,7 @@
 "              2) https://bitbucket.org/jasonwryan/eeepc/src/40f27908ce98/.colours/dark
 "              3) http://www.vim.org/scripts/script.php?script_id=1243
 
-" Usage {{{
+" Usage {{{{{{{{{
 "
 " Installation:
 "
@@ -81,7 +81,7 @@
 "
 " Linux Console Support:
 "
-" 1) Add the following to your ~/.bashrc file:
+" 1) Add the following to your ~/.bashrc file:{{{{{{{{{
 "
 "     #
 "     # Linux Console Color Scheme: dark
@@ -105,7 +105,7 @@
 "         echo -en "\033]Pe47959e" # lightcyan
 "         echo -en "\033]P7899ca1" # lightgray
 "         echo -en "\033]Pfc0c0c0" # white
-"     fi
+"     fi}}}}}}}}}
 "
 " Enable Higher Contrast Mode:
 "
@@ -121,7 +121,7 @@
 "
 "     nnoremap <Leader>m :MirodarkToggleHigherContrastMode<CR>
 " }}}
-
+"}}}
 " higher contrast mode toggle function {{{
 if !exists("g:loaded_mirodark")
     fun! s:toggle_higher_contrast_mode()
@@ -138,7 +138,7 @@ if !exists("g:loaded_mirodark")
 
     let g:loaded_mirodark=1
 endif
-" }}}
+" }}}}}}
 
 " color approximation functions {{{
 "
@@ -385,6 +385,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:dwht_hex="899ca1"        " dark white hexadecimal    (color 7)
     let s:lwht_hex="c0c0c0"        " light white hexadecimal   (color 15)
     let s:culc_hex="272727"        " cursor line/column hexadecimal
+    let s:spec_hex="cce6ff"        " cursor line/column hexadecimal
 
     if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv="gui" " vim environment (term, cterm, gui)
@@ -407,6 +408,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:dwht="#".s:dwht_hex
         let s:lwht="#".s:lwht_hex
         let s:culc="#".s:culc_hex
+        let s:spec="#".s:spec_hex
     else
         let s:venv="cterm"
         let s:bclr=s:rgb(s:bclr_hex)
@@ -428,6 +430,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:dwht=s:rgb(s:dwht_hex)
         let s:lwht=s:rgb(s:lwht_hex)
         let s:culc=s:rgb(s:culc_hex)
+        let s:spec=s:rgb(s:spec_hex)
     endif
 elseif $TERM == "linux"
     let s:venv="cterm"
@@ -552,7 +555,7 @@ call s:HI(         "Cursor", s:lred, s:bclr,     "" )
 call s:HI(     "CursorLine", s:culc,     "", "none" )
 call s:HI(   "CursorLineNr", s:culc, s:dwht, "none" )
 call s:HI(   "CursorColumn", s:culc,     "",     "" )
-call s:HI(    "ColorColumn", s:culc,     "",     "" )
+call s:HI(    "ColorColumn", s:spec,     "",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
 call s:HI(     "SignColumn", "NONE",     "",     "" )
 " }}}
